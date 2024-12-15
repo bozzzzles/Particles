@@ -158,7 +158,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
         m_vx *= -1;
     m_vy = rand() % 401 + 100;
     m_color1 = Color::White;
-    m_color2 = Color(rand() % 256, rand % 256, rand() % 256);
+    m_color2 = Color(rand() % 256, rand() % 256, rand() % 256);
 
     double theta = ((float)rand() / (RAND_MAX)) * (PI / 2);
     double dTheta = 2 * PI / (numPoints - 1);
@@ -172,4 +172,57 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
         m_A(1, j) = m_centerCoordinate.y + dy;
         theta += dTheta;
     }
+}
+
+void draw(RenderTarget& target, RenderStates states) const
+{
+    VertexArray lines(TriangleFan, numPoints + 1);
+    Vector2f center = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
+    lines[0].position = center;
+    lines[0].color = m_color1;
+    for (j = 1; j <= m_numPoints; j++)
+    {
+        Vector2f coord(m_A(0, j-1), m_A(1, j-1));
+        lines[j].position = target.mapCoordsToPixel(coord, m_cartesianPlane);
+        lines[j].color = m_color2;
+    }
+    target.draw(lines);
+}
+
+void update(float dt)
+{
+    m_ttl -= dt;
+    rotate(dt * m_radiansPerSec);
+    scale(SCALE);
+    float dx, dy;
+    dx = m_vx * dt;
+    m_vy -= G * dt;
+    dy = m_vy * dt;
+    translate(dx, dy);
+}
+
+void translate(double xShift, double yShift)
+{
+    TranslationMatrix T(xShift, yShift, m_A.getCols());
+    m_A = T + m_A;
+    m_centerCoordinate.x += xShift;
+    m_centerCoordinate.y += yShift;
+}
+
+void rotate(double theta)
+{
+    Vector2f temp = m_centerCoordinate;
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    RotationMatrix R(theta);
+    m_A = R * m_A;
+    translate(temp.x, temp.y);
+}
+
+void scale(double c)
+{
+    Vector2f temp = m_centerCoordinate;
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    ScalingMatrix S(c);
+    m_A = S * m_A;
+    translate(temp.x, temp.y);
 }
