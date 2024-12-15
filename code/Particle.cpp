@@ -160,8 +160,8 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     m_color1 = Color::White;
     m_color2 = Color(rand() % 256, rand() % 256, rand() % 256);
 
-    double theta = ((float)rand() / (RAND_MAX)) * (PI / 2);
-    double dTheta = 2 * PI / (numPoints - 1);
+    double theta = ((float)rand() / (RAND_MAX)) * (M_PI / 2);
+    double dTheta = 2 * M_PI / (numPoints - 1);
     for (int j = 0; j < numPoints; j++)
     {
         double r, dx, dy;
@@ -214,7 +214,7 @@ void Particle::translate(double xShift, double yShift)
 
 void Particle::rotate(double theta)
 {
-    Vector2f temp(m_centerCoordinate.x, m_centerCoordinate.y);
+    Vector2f temp = m_centerCoordinate();
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
     RotationMatrix R(theta);
     m_A = R * m_A;
@@ -223,8 +223,8 @@ void Particle::rotate(double theta)
 
 void Particle::scale(double c)
 {
-    Vector2f temp(m_centerCoordinate.x, m_centerCoordinate.y);
-    translate(-(m_centerCoordinate.x), -(m_centerCoordinate.y));
+    Vector2f temp = m_centerCoordinate;
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
     ScalingMatrix S(c);
     m_A = S * m_A;
     translate(temp.x, temp.y);
