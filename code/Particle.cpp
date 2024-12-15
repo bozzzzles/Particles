@@ -149,7 +149,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 {
     m_ttl = TTL;
     m_numPoints = numPoints;
-    m_radiansPerSec = ((float)rand() / (RAND_MAX)) * PI;
+    m_radiansPerSec = ((float)rand() / (RAND_MAX)) * M_PI;
     m_cartesianPlane.setCenter(0, 0);
     m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
     m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
@@ -214,7 +214,7 @@ void Particle::translate(double xShift, double yShift)
 
 void Particle::rotate(double theta)
 {
-    Vector2f temp = m_centerCoordinate();
+    Vector2f temp = m_centerCoordinate;
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
     RotationMatrix R(theta);
     m_A = R * m_A;
