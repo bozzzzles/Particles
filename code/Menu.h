@@ -6,7 +6,7 @@
 
 using namespace std;
 using namespace sf;
-#define max_items 3
+#define MAX_ITEMS 3
 
 class Menu {
   public:
@@ -16,9 +16,9 @@ class Menu {
     void draw(RenderWindow &window);
     void MoveUp();
     void MoveDown();
+    int GetPressedItem() {return selectedItemIndex;}
   private:
     int selectedItemIndex;
     Font font;
-    Text text[max_items];
-
+    Text menu[MAX_ITEMS];
 };
