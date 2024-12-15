@@ -29,6 +29,7 @@ void Engine::run()
     }
 }
 
+// Controls how user interacts with game to create particles
 void Engine::input()
 {
     Event event;
@@ -57,6 +58,7 @@ void Engine::input()
     }
 }
 
+// Checks which particles should still exist and removes them from vector once TTL expires
 void Engine::update(float dtAsSeconds)
 {
     for (auto it = m_particles.begin(); it != m_particles.end();)
@@ -73,6 +75,7 @@ void Engine::update(float dtAsSeconds)
     }
 }
 
+// Loops through each particle in vector to be drawn in window
 void Engine::draw()
 {
     m_Window.clear();
