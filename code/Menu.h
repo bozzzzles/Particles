@@ -1,6 +1,10 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <cstdlib>
+#include <iostream>
+#include <string>
 
+using namespace std;
 using namespace sf;
 #define max_items 3
 
