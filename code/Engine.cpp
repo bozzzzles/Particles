@@ -4,7 +4,7 @@ Engine::Engine()
 {
     // Get display values to be used with window
     VideoMode vm(VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height);
-    srand(time(null));
+    srand(time(0));
     // Create a Completed run() from Engine.cpp and open a window for the game
     m_Window.create(vm, "Particles", Style::Default);
 }
@@ -32,9 +32,9 @@ void Engine::run()
 void Engine::input()
 {
     Event event;
-    while (window.pollEvent(event))
+    while (m_Window.pollEvent(event))
     {
-        if (event.type == Event::closed)
+        if (event.type == Event::Closed)
         {
             m_Window.close();
         }
@@ -42,7 +42,7 @@ void Engine::input()
         {
             m_Window.close();
         }
-        if (event.type == Event.MouseButtonPressed)
+        if (event.type == Event::MouseButtonPressed)
         {
             if (event.mouseButton.button == Mouse::Left)
             {
