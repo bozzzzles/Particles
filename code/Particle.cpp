@@ -174,7 +174,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     }
 }
 
-void draw(RenderTarget& target, RenderStates states) const
+void Particle::draw(RenderTarget& target, RenderStates states) const
 {
     VertexArray lines(TriangleFan, numPoints + 1);
     Vector2f center = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
@@ -189,7 +189,7 @@ void draw(RenderTarget& target, RenderStates states) const
     target.draw(lines);
 }
 
-void update(float dt)
+void Particle::update(float dt)
 {
     m_ttl -= dt;
     rotate(dt * m_radiansPerSec);
@@ -201,7 +201,7 @@ void update(float dt)
     translate(dx, dy);
 }
 
-void translate(double xShift, double yShift)
+void Particle::translate(double xShift, double yShift)
 {
     TranslationMatrix T(xShift, yShift, m_A.getCols());
     m_A = T + m_A;
@@ -209,7 +209,7 @@ void translate(double xShift, double yShift)
     m_centerCoordinate.y += yShift;
 }
 
-void rotate(double theta)
+void Particle::rotate(double theta)
 {
     Vector2f temp = m_centerCoordinate;
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
@@ -218,7 +218,7 @@ void rotate(double theta)
     translate(temp.x, temp.y);
 }
 
-void scale(double c)
+void Particle::scale(double c)
 {
     Vector2f temp = m_centerCoordinate;
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
