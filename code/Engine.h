@@ -1,6 +1,7 @@
 #pragma once
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Particle.h"
 using namespace sf;
 using namespace std;
@@ -18,6 +19,11 @@ private:
 	void input();
 	void update(float dtAsSeconds);
 	void draw();
+
+	// Texture, sprite, and music
+	Texture m_texture;
+	Sprite m_sprite;
+	Music m_music;
 
 public:
 	// The Engine constructor
