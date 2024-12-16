@@ -28,7 +28,8 @@ Engine::Engine()
 
     // Set up sprite
     m_sprite.setTexture(m_texture);
-    m_sprite.setPosition(VideoMode::getDesktopMode().width / 2 , VideoMode::getDesktopMode().height / 2);
+    m_sprite.setPosition(VideoMode::getDesktopMode().width / 2.0f - m_texture.getSize().x / 2.0f,
+    VideoMode::getDesktopMode().height / 2.0f - m_texture.getSize().y / 2.0f);
 
     // Load and set up music
     if (!m_music.openFromFile("danger-zone-official-video---top-gun.wav")) {
