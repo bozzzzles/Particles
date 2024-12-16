@@ -16,9 +16,9 @@ Engine::Engine()
     // Set text
     m_text.setFont(m_font);
     m_text.setString("PARTICLES (AWESOME)");
-    m_text.setCharacterSize(15);
-    m_text.setFillColor(Color::White);
-    m_text.setPosition(VideoMode::getDesktopMode().width / 2 , VideoMode::getDesktopMode().height * (7 / 8));
+    m_text.setCharacterSize(30);
+    m_text.setFillColor(Color::Red);
+    m_text.setPosition(VideoMode::getDesktopMode().width / 4 , VideoMode::getDesktopMode().height * (7 / 8));
 
     // Load texture
     if (!m_texture.loadFromFile("awesomeTruck.png")) {
@@ -28,6 +28,7 @@ Engine::Engine()
 
     // Set up sprite
     m_sprite.setTexture(m_texture);
+    m_sprite.setScale(1.0f / 5.0f,1.0f / 5.0f);
     m_sprite.setPosition(VideoMode::getDesktopMode().width / 2.0f - m_texture.getSize().x / 2.0f,
     VideoMode::getDesktopMode().height / 2.0f - m_texture.getSize().y / 2.0f);
 
