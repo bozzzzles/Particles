@@ -21,6 +21,8 @@ private:
 	void draw();
 
 	// Texture, sprite, and music
+	Font m_font;
+	Text m_text;
 	Texture m_texture;
 	Sprite m_sprite;
 	Music m_music;

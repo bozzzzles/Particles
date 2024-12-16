@@ -7,6 +7,36 @@ Engine::Engine()
     srand(time(0));
     // Create a Completed run() from Engine.cpp and open a window for the game
     m_Window.create(vm, "Particles", Style::Default);
+
+    // Load font
+    if (!m_font.loadFromFile("Blazed.ttf")) {
+        cerr << "Error loading font!" << endl;
+        exit(1);
+    }
+    // Set text
+    m_text.setFont(m_font);
+    m_text.setString("PARTICLES (AWESOME)");
+    m_text.setCharacterSize(40);
+    m_text.setFillColor(Color::White);
+    m_text.setPosition(50, 50);
+
+    // Load texture
+    if (!m_texture.loadFromFile("awesomeTruck.png")) {
+        cerr << "Error loading sprite texture!" << endl;
+        exit(1);
+    }
+
+    // Set up sprite
+    m_sprite.setTexture(m_texture);
+    m_sprite.setPosition(200, 200);
+
+    // Load and set up music
+    if (!m_music.openFromFile("danger-zone-official-video---top-gun.wav")) {
+        cerr << "Error loading music!" << endl;
+        exit(1);
+    }
+    m_music.setLoop(true);
+    m_music.play();
 }
 
 void Engine::run()
