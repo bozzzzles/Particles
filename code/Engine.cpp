@@ -16,7 +16,7 @@ Engine::Engine()
     // Set text
     m_text.setFont(m_font);
     m_text.setString("PARTICLES (AWESOME)");
-    m_text.setCharacterSize(40);
+    m_text.setCharacterSize(15);
     m_text.setFillColor(Color::White);
     m_text.setPosition(VideoMode::getDesktopMode().width / 2 , VideoMode::getDesktopMode().height * (7 / 8));
 
