@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include "Menu.h"
 
 Engine::Engine()
 {
@@ -8,7 +7,6 @@ Engine::Engine()
     srand(time(0));
     // Create a Completed run() from Engine.cpp and open a window for the game
     m_Window.create(vm, "Particles", Style::Default);
-    Menu menu(m_Window.getSize().x, m_Window.getSize().y);
 }
 
 void Engine::run()
