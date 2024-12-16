@@ -112,9 +112,13 @@ void Engine::update(float dtAsSeconds)
 void Engine::draw()
 {
     m_Window.clear();
+
     for (Particle p : m_particles)
     {
         m_Window.draw(p);
     }
+
+    m_Window.draw(m_text);
+    m_Window.draw(m_sprite);
     m_Window.display();
 }
