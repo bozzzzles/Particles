@@ -18,7 +18,7 @@ Engine::Engine()
     m_text.setString("PARTICLES (AWESOME)");
     m_text.setCharacterSize(40);
     m_text.setFillColor(Color::White);
-    m_text.setPosition(50, 50);
+    m_text.setPosition(VideoMode::getDesktopMode().width / 2 , VideoMode::getDesktopMode().height * (7 / 8));
 
     // Load texture
     if (!m_texture.loadFromFile("awesomeTruck.png")) {
@@ -28,7 +28,7 @@ Engine::Engine()
 
     // Set up sprite
     m_sprite.setTexture(m_texture);
-    m_sprite.setPosition(200, 200);
+    m_sprite.setPosition(VideoMode::getDesktopMode().width / 2 , VideoMode::getDesktopMode().height / 2);
 
     // Load and set up music
     if (!m_music.openFromFile("danger-zone-official-video---top-gun.wav")) {
